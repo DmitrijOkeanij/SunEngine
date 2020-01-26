@@ -22,12 +22,13 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    - name: yarn install, quasar build
+    - name: yarn install, install quasar
       run: |
         cd Client
         cp -RT src/site.template src/site
         yarn install
         yarn global add @quasar/cli
+    - name: quasar build
         npx quasar build
         cd ..
         cp -RT Client/dist/spa/. build/wwwroot
@@ -38,16 +39,16 @@ jobs:
         cp -RT Config.template build/Config
         cp -RT Resources build/Resources
         cp -T .SunEngineRoot build/.SunEngineRoot
-    - name: Clear build on git
-      run:  git rm -rf build
+    #- name: Clear build on git
+    #  run:  git rm -rf build
     - name: Commit build
       uses: EndBug/add-and-commit@v2
       with:
          author_name: SunEngine GitHub Action Script
          author_email: github-action@sunengine.site
-         cwd: "./../SunEngineBuild"
+         cwd: "."
          message: "Release build auto commit"
-         path: "."
+         path: "build"
          pattern: "*"
          force: true
       env:
