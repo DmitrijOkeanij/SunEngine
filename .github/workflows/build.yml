@@ -10,11 +10,9 @@ jobs:
     steps:
     - name: Checkout SunEngine
       uses: actions/checkout@v2
-      with:
-        path: main
       
     - name: Checkout SunEngineBuild
-    - uses: actions/checkout@v2
+      uses: actions/checkout@v2
       with:
         repository: DmitrijOkeanij/SunEngineBuild
         path: SunEngineBuild
@@ -25,7 +23,7 @@ jobs:
         dotnet-version: 3.1.100
 
     - name: Build with dotnet
-      run: dotnet publish --configuration Release "main/Server/SunEngine.Cli" --output main/build/Server
+      run: dotnet publish --configuration Release "Server/SunEngine.Cli" --output build/Server
       
     - name: Use Node.js 12.x
       uses: actions/setup-node@v1
