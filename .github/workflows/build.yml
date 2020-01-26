@@ -14,7 +14,9 @@ jobs:
       with:
         dotnet-version: 3.1.100
     - name: Build with dotnet
-      run: dotnet build --configuration Release "Server/SunEngine.Cli" --output "build/Server"
+      run: |
+         dotnet build --configuration Release "Server/SunEngine.Cli" --output "buildServer"
+         cp -RF "buildServer" "build/Server"
     - uses: actions/checkout@v1
     - name: Use Node.js 12.x
       uses: actions/setup-node@v1
@@ -43,7 +45,7 @@ jobs:
       with:
          author_name: SunEngine GitHub Action Script
          author_email: github-action@sunengine.site
-         cwd: "."
+         cwd: "DmitrijOkeanij/SunEngineBuild"
          message: "Release build auto commit"
          path: "build"
          pattern: "*"
