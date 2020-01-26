@@ -1,0 +1,37 @@
+name: Build
+
+on: []
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.100
+    - name: Build with dotnet
+      run: dotnet build --configuration Release "Server/SunEngine.Cli" --output "build/Server"
+    - uses: actions/checkout@v1
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: npm install, quasar build
+      run: |
+        cd Client
+        cp -RT src/site.template src/site
+        npm install
+        npm install -g @quasar/cli
+        npx quasar build
+        cp dist/spa build/Client
+      env:
+        CI: true
+    - name: Copy dirs
+      run: |
+        cp -RT Config.template build/Config
+        cp -RT Resources build/Resources
+        cd .SunEngineRoot build/.SunEngineRoot
