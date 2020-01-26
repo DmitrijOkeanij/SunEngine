@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout SunEngine
+      uses: actions/checkout@v2
+    - name: Checkout SunEngineBuild
     - uses: actions/checkout@v2
       with:
         repository: DmitrijOkeanij/SunEngineBuild
