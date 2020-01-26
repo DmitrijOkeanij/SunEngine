@@ -36,6 +36,7 @@ jobs:
         cp -RT Config.template build/Config
         cp -RT Resources build/Resources
         cp -T .SunEngineRoot build/.SunEngineRoot
+        cp -T .SunEngineRoot build/.SunEngineRoot2
         #- name: Clear build on git
         #  run:  git rm -rf build
     - name: Commit build
@@ -43,7 +44,7 @@ jobs:
       with:
          author_name: SunEngine GitHub Action Script
          author_email: github-action@sunengine.site
-         cwd: "./build2"
+         cwd: "."
          message: "Release build auto commit"
          path: "build"
          pattern: "*"
