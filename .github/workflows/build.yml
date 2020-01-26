@@ -45,7 +45,7 @@ jobs:
          author_email: github-action@sunengine.site
          cwd: "."
          message: "Clean build auto commit"
-         path: "build"
+         path: "."
          pattern: "*"
          force: true
       env:
