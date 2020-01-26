@@ -26,6 +26,4 @@ jobs:
          pattern: "*"
          force: false
       env:
-         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
-    - name: Build Quasar Client
-      run: cd Client && npx quasar build
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
