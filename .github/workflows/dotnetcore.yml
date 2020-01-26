@@ -14,4 +14,4 @@ jobs:
       with:
         dotnet-version: 3.1.100
     - name: Build with dotnet
-      run: dotnet publish --configuration Release "Server/SunEngine.Cli"
+      run: dotnet build --configuration Release "Server/SunEngine.Cli" --output "build"
