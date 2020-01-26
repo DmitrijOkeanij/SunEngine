@@ -35,7 +35,7 @@ jobs:
       run: |
         cp -RT Config.template build/Config
         cp -RT Resources build/Resources
-        cd .SunEngineRoot build/.SunEngineRoot
+        cp -T .SunEngineRoot build/.SunEngineRoot
     - name: Clear build on git
       run:  git rm -r build
     - name: Commit build
