@@ -38,6 +38,18 @@ jobs:
         cp -T .SunEngineRoot build/.SunEngineRoot2
     - name: Clear build on git
       run:  git rm -rf build
+    - name: Commit clear
+      uses: EndBug/add-and-commit@v2
+      with:
+         author_name: SunEngine GitHub Action Script
+         author_email: github-action@sunengine.site
+         cwd: "."
+         message: "Clean build auto commit"
+         path: "build"
+         pattern: "*"
+         force: true
+      env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Commit build
       uses: EndBug/add-and-commit@v2
       with:
@@ -49,4 +61,4 @@ jobs:
          pattern: "*"
          force: true
       env:
-         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}:  
