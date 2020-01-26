@@ -37,7 +37,7 @@ jobs:
         cp -T .SunEngineRoot build/.SunEngineRoot
         cp -T .SunEngineRoot build/.SunEngineRoot2
     - name: Clear build on git
-      run:  git rm -rf build
+      run:  git rm -rf --ignore-unmatch build
     - name: Commit clear
       uses: EndBug/add-and-commit@v2
       with:
