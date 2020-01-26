@@ -30,12 +30,12 @@ jobs:
         yarn global add @quasar/cli
     - name: quasar build
       run: |
-        npx quasar build
+        ypx quasar build
         cd ..
         cp -RT Client/dist/spa/. build/wwwroot
       env:
         CI: true
-    - name: Copy Config,Resources,.SunEngineRoot dirs and file
+    - name: Copy Config, Resources, .SunEngineRoot dirs and file
       run: |
         cp -RT Config.template build/Config
         cp -RT Resources build/Resources
