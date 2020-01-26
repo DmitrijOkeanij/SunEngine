@@ -15,3 +15,15 @@ jobs:
         dotnet-version: 3.1.100
     - name: Build with dotnet
       run: dotnet build --configuration Release "Server/SunEngine.Cli" --output "build"
+    - name: Commit build
+      uses: EndBug/add-and-commit@v2
+      with:
+         author_name: Your Name
+         author_email: mail@example.com
+         cwd: "."
+         message: "Your commit message"
+         path: "build"
+         pattern: "*"
+         force: false
+      env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
