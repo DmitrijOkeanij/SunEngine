@@ -9,16 +9,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.100
+
     - name: Build with dotnet
       run: dotnet publish --configuration Release "Server/SunEngine.Cli" --output build/Server
+      
     - name: Use Node.js 12.x
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
+          
     - name: npm install, install quasar, quasar build
       run: |
         cd Client
@@ -30,33 +34,23 @@ jobs:
         cp -RT Client/dist/spa/. build/wwwroot
       env:
         CI: true
+        
     - name: Copy Config, Resources, .SunEngineRoot dirs and file
       run: |
         cp -RT Config.template build/Config
         cp -RT Resources build/Resources
         cp -T .SunEngineRoot build/.SunEngineRoot
-        cp -T .SunEngineRoot build/.SunEngineRoot2
+        
     - name: Clear build on git
-      run:  git rm -rf --ignore-unmatch build
-    - name: Commit clear
-      uses: EndBug/add-and-commit@v2
-      with:
-         author_name: SunEngine GitHub Action Script
-         author_email: github-action@sunengine.site
-         cwd: "."
-         message: "Clean build auto commit"
-         path: "."
-         pattern: "*"
-         force: true
-      env:
-         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: git rm -rf --ignore-unmatch build
+      
     - name: Commit build
       uses: EndBug/add-and-commit@v2
       with:
          author_name: SunEngine GitHub Action Script
          author_email: github-action@sunengine.site
          cwd: "."
-         message: "Release build auto commit"
+         message: "Build auto commit"
          path: "build"
          pattern: "*"
          force: true
