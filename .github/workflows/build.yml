@@ -9,8 +9,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        repository: DmitrijOkeanij/SunEngineBuild
+        path: SunEngineBuild
       
-    - name: Setup .NET Core
+    - name: Setup .NET Core 3.1
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.100
@@ -49,7 +52,7 @@ jobs:
       with:
          author_name: SunEngine GitHub Action Script
          author_email: github-action@sunengine.site
-         cwd: "."
+         cwd: "SunEngineBuild"
          message: "Build auto commit"
          path: "build"
          pattern: "*"
