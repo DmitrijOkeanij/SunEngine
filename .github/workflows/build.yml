@@ -22,18 +22,18 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    - name: npm install, quasar build
+    - name: yarn install, quasar build
       run: |
         cd Client
         cp -RT src/site.template src/site
-        npm install
-        npm install -g @quasar/cli
+        yarn install
+        yarn install -g @quasar/cli
         npx quasar build
         cd ..
         cp -RT Client/dist/spa/. build/wwwroot
       env:
         CI: true
-    - name: Copy dirs
+    - name: Copy Config,Resources,.SunEngineRoot dirs and file
       run: |
         cp -RT Config.template build/Config
         cp -RT Resources build/Resources
@@ -45,7 +45,7 @@ jobs:
       with:
          author_name: SunEngine GitHub Action Script
          author_email: github-action@sunengine.site
-         cwd: "../SunEngineBuild"
+         cwd: "DmitrijOkeanij/SunEngineBuild"
          message: "Release build auto commit"
          path: "."
          pattern: "*"
