@@ -27,7 +27,8 @@ jobs:
         npm install
         npm install -g @quasar/cli
         npx quasar build
-        cp -RT dist/spa/. build/wwwroot
+        cd ..
+        cp -RT Client/dist/spa/. build/wwwroot
       env:
         CI: true
     - name: Copy dirs
