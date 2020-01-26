@@ -43,9 +43,9 @@ jobs:
       with:
          author_name: SunEngine GitHub Action Script
          author_email: github-action@sunengine.site
-         cwd: "."
+         cwd: "./build2"
          message: "Release build auto commit"
-         path: "build1"
+         path: "build"
          pattern: "*"
          force: true
       env:
