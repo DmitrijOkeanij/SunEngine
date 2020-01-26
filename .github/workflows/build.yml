@@ -26,11 +26,11 @@ jobs:
       run: |
         cd Client
         cp -RT src/site.template src/site
-        yarn install
-        yarn global add @quasar/cli
+        npm install
+        npm -g install @quasar/cli
     - name: quasar build
       run: |
-        yarn quasar build
+        npx quasar build
         cd ..
         cp -RT Client/dist/spa/. build/wwwroot
       env:
