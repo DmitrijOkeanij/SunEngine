@@ -27,7 +27,7 @@ jobs:
         cd Client
         cp -RT src/site.template src/site
         yarn install
-        yarn install -g @quasar/cli
+        yarn global add @quasar/cli
         npx quasar build
         cd ..
         cp -RT Client/dist/spa/. build/wwwroot
