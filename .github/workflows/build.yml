@@ -30,7 +30,7 @@ jobs:
         yarn global add @quasar/cli
     - name: quasar build
       run: |
-        ypx quasar build
+        quasar build
         cd ..
         cp -RT Client/dist/spa/. build/wwwroot
       env:
