@@ -24,6 +24,6 @@ jobs:
          message: "Your commit message"
          path: "build"
          pattern: "*"
-         force: false
+         force: true
       env:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
