@@ -35,3 +35,17 @@ jobs:
         cp -RT Config.template build/Config
         cp -RT Resources build/Resources
         cd .SunEngineRoot build/.SunEngineRoot
+    - name: Clear build on git
+      run:  git rm -r build
+    - name: Commit build
+      uses: EndBug/add-and-commit@v2
+      with:
+         author_name: SunEngine GitHub Action Script
+         author_email: github-action@sunengine.site
+         cwd: "."
+         message: "Release build auto commit"
+         path: "build"
+         pattern: "*"
+         force: true
+      env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
