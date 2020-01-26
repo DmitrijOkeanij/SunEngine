@@ -24,7 +24,7 @@ jobs:
          message: "Your commit message"
          path: "build"
          pattern: "*"
-         force: true
+         force: false
       env:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
     - name: Build Quasar Client
