@@ -16,7 +16,7 @@ jobs:
     - name: npm install, build, and test
       run: |
         cd Client
-        cp -RT site.template site
+        cp -RT src/site.template src/site
         npm install
         npm install -g @quasar/cli
         npx quasar build
