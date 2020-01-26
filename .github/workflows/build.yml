@@ -28,11 +28,14 @@ jobs:
         cp -RT src/site.template src/site
         npm install
         npm -g install @quasar/cli
-    - name: quasar build
-      run: |
         npx quasar build
         cd ..
         cp -RT Client/dist/spa/. build/wwwroot
+    #- name: quasar build
+    #  run: |
+    #    npx quasar build
+    #    cd ..
+    #    cp -RT Client/dist/spa/. build/wwwroot
       env:
         CI: true
     - name: Copy Config, Resources, .SunEngineRoot dirs and file
