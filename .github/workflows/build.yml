@@ -16,7 +16,7 @@ jobs:
     - name: Build with dotnet
       run: |
          dotnet build --configuration Release "Server/SunEngine.Cli" --output "buildServer"
-         cp -RF "buildServer" "build/Server"
+         cp -RT "buildServer" "build/Server"
     - uses: actions/checkout@v1
     - name: Use Node.js 12.x
       uses: actions/setup-node@v1
