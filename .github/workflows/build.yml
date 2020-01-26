@@ -14,15 +14,13 @@ jobs:
       with:
         dotnet-version: 3.1.100
     - name: Build with dotnet
-      run: |
-         dotnet build --configuration Release "Server/SunEngine.Cli" --output "buildServer"
-         cp -RT "buildServer" "build/Server"
+      run: dotnet publish --configuration Release "Server/SunEngine.Cli" --output "build/Server"
     - uses: actions/checkout@v1
     - name: Use Node.js 12.x
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    - name: yarn install, install quasar
+    - name: npm install, install quasar, quasar build
       run: |
         cd Client
         cp -RT src/site.template src/site
