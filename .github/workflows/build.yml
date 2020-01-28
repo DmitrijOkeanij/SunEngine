@@ -47,11 +47,24 @@ jobs:
         cp -RT Config.template build/Config
         cp -RT Resources build/Resources
         cp -T .SunEngineRoot build/.SunEngineRoot
+        cd ..
+        shopt -s extglob
+        rm -rf !(build)
+        cp -RT build/* ./
+        rm -rf build 
         
-    - name: publish:starters
-      uses: johno/actions-push-subdirectories@master
+    #- name: publish:starters
+    #  uses: johno/actions-push-subdirectories@master
+    #  env:
+    #      API_TOKEN_GITHUB: ${{ secrets.AutoBuild }}
+    #      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #  with:
+    #      args: build DmitrijOkeanij SunEngineBuild
+      
+    - name: Deploy
+      uses: s0/git-publish-subdir-action@master
       env:
-          API_TOKEN_GITHUB: ${{ secrets.AutoBuild }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-          args: build DmitrijOkeanij SunEngineBuild
+        REPO: git@github.com:DmitrijOkeanij/SunEngineBuild.git
+        BRANCH: master
+        SSH_PRIVATE_KEY: ${{ secrets.PRIV }}
+        FOLDER: .
