@@ -50,7 +50,9 @@ jobs:
         cp -RT Resources build/Resources
         cp -T .SunEngineRoot build/.SunEngineRoot
         ls -a
-        shopt -s extglob && rm -rf !(build)
+        echo deleting
+        find . -not -name 'build' -print0 | xargs -0 rm -r
+        echo deleted
         ls -a
         cp -RT build/* ./
         rm -rf build 
