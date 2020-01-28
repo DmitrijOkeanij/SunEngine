@@ -40,7 +40,7 @@ jobs:
         npm -g install @quasar/cli
         npx quasar build
         cd ..
-        cp -RT Client/dist/spa/. SunEngineBuild/wwwroot
+        cp -RT Client/dist/spa/. build/wwwroot
       env:
         CI: true
         
