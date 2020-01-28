@@ -48,10 +48,11 @@ jobs:
         cp -RT Resources build/Resources
         cp -T .SunEngineRoot build/.SunEngineRoot
         cd ..
-        find . -not -name 'build' -print0 | xargs -0 rm -r
+        shopt -s extglob && rm -rf !(build)
         cp -RT build/* ./
         rm -rf build 
         
+    # find . -not -name 'build' -print0 | xargs -0 rm -r
     #- name: publish:starters
     #  uses: johno/actions-push-subdirectories@master
     #  env:
