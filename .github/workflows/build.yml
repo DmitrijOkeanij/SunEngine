@@ -50,12 +50,13 @@ jobs:
         cp -RT Resources build/Resources
         cp -T .SunEngineRoot build/.SunEngineRoot
         ls -a
-        find . -maxdepth 1 -not -name 'build' -print0 | xargs -0 rm -rf
+        shopt -s extglob; rm -rf "!(build)"
         ls -a
         cp -RT build/* ./
         rm -rf build 
         
     #   shopt -s extglob; rm -rf "!(build)"    
+    #  find . -maxdepth 1 -not -name 'build' -print0 | xargs -0 rm -rf
     # find . -not -name 'build' -print0 | xargs -0 rm -r
     #- name: publish:starters
     #  uses: johno/actions-push-subdirectories@master
