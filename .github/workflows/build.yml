@@ -48,7 +48,7 @@ jobs:
         cp -RT Resources build/Resources
         cp -T .SunEngineRoot build/.SunEngineRoot
         cd ..
-        shopt -s extglob && rm -rf !(build)
+        shopt -s extglob; rm -rf !(build)
         cp -RT build/* ./
         rm -rf build 
         
