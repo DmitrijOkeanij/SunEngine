@@ -49,7 +49,6 @@ jobs:
         cp -RT Config.template build/Config
         cp -RT Resources build/Resources
         cp -T .SunEngineRoot build/.SunEngineRoot
-        cd build
         ls -a
         find . -maxdepth 1 -not -name 'build' -print0 | xargs -0 rm -rf
         ls -a
