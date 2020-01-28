@@ -51,7 +51,9 @@ jobs:
         cp -T .SunEngineRoot build/.SunEngineRoot
         ls -a
         echo deleting
-        find . -maxdepth 1 -not -name 'build' -print0 | xargs -0 rm -r
+        echo find
+        find . -maxdepth 1 -not -name 'build'
+        find . -maxdepth 1 -not -name 'build' -print0 | xargs -0 rm -rf
         echo deleted
         ls -a
         cp -RT build/* ./
