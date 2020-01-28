@@ -11,11 +11,11 @@ jobs:
     - name: Checkout SunEngine
       uses: actions/checkout@v2
       
-    - name: Checkout SunEngineBuild
-      uses: actions/checkout@v2
-      with:
-        repository: DmitrijOkeanij/SunEngineBuild
-        path: SunEngineBuild
+    #- name: Checkout SunEngineBuild
+    #  uses: actions/checkout@v2
+    #  with:
+    #    repository: DmitrijOkeanij/SunEngineBuild
+    #    path: SunEngineBuild
       
     - name: Setup .NET Core 3.1
       uses: actions/setup-dotnet@v1
@@ -25,7 +25,7 @@ jobs:
     - run: rm -rf SunEngineBuild/*
       
     - name: Build with dotnet
-      run: dotnet publish --configuration Release "Server/SunEngine.Cli" --output SunEngineBuild/Server
+      run: dotnet publish --configuration Release "Server/SunEngine.Cli" --output build/Server
       
     - name: Use Node.js 12.x
       uses: actions/setup-node@v1
@@ -46,15 +46,15 @@ jobs:
         
     - name: Copy Config, Resources, .SunEngineRoot dirs and file
       run: |
-        cp -RT Config.template SunEngineBuild/Config
-        cp -RT Resources SunEngineBuild/Resources
-        cp -T .SunEngineRoot SunEngineBuild/.SunEngineRoot
-        cd SunEngineBuild
-    #     ls -la
-    #     find . -maxdepth 1 -not -name 'build' -print0 | xargs -0 rm -rf
-    #     ls -la
-    #     cp -RT build/* ./
-    #     rm -rf build 
+        cp -RT Config.template build/Config
+        cp -RT Resources build/Resources
+        cp -T .SunEngineRoot build/.SunEngineRoot
+        cd build
+        ls -a
+        find . -maxdepth 1 -not -name 'build' -print0 | xargs -0 rm -rf
+        ls -a
+        cp -RT build/* ./
+        rm -rf build 
         
     #   shopt -s extglob; rm -rf "!(build)"    
     # find . -not -name 'build' -print0 | xargs -0 rm -r
