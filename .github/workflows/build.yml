@@ -11,19 +11,21 @@ jobs:
     - name: Checkout SunEngine
       uses: actions/checkout@v2
       
-    #- name: Checkout SunEngineBuild
-    #  uses: actions/checkout@v2
-    #  with:
-    #    repository: DmitrijOkeanij/SunEngineBuild
-    #    path: SunEngineBuild
+    - name: Checkout SunEngineBuild
+      uses: actions/checkout@v2
+      with:
+        repository: DmitrijOkeanij/SunEngineBuild
+        path: SunEngineBuild
       
     - name: Setup .NET Core 3.1
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.100
 
+    - run: rm -rf SunEngineBuild/*
+      
     - name: Build with dotnet
-      run: dotnet publish --configuration Release "Server/SunEngine.Cli" --output build/Server
+      run: dotnet publish --configuration Release "Server/SunEngine.Cli" --output SunEngineBuild/Server
       
     - name: Use Node.js 12.x
       uses: actions/setup-node@v1
@@ -38,20 +40,21 @@ jobs:
         npm -g install @quasar/cli
         npx quasar build
         cd ..
-        cp -RT Client/dist/spa/. build/wwwroot
+        cp -RT Client/dist/spa/. SunEngineBuild/wwwroot
       env:
         CI: true
         
     - name: Copy Config, Resources, .SunEngineRoot dirs and file
       run: |
-        cp -RT Config.template build/Config
-        cp -RT Resources build/Resources
-        cp -T .SunEngineRoot build/.SunEngineRoot
-        ls -la
-        find . -maxdepth 1 -not -name 'build' -print0 | xargs -0 rm -rf
-        ls -la
-        cp -RT build/* ./
-        rm -rf build 
+        cp -RT Config.template SunEngineBuild/Config
+        cp -RT Resources SunEngineBuild/Resources
+        cp -T .SunEngineRoot SunEngineBuild/.SunEngineRoot
+        cd SunEngineBuild
+    #     ls -la
+    #     find . -maxdepth 1 -not -name 'build' -print0 | xargs -0 rm -rf
+    #     ls -la
+    #     cp -RT build/* ./
+    #     rm -rf build 
         
     #   shopt -s extglob; rm -rf "!(build)"    
     # find . -not -name 'build' -print0 | xargs -0 rm -r
