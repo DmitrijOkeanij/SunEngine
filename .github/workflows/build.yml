@@ -48,7 +48,7 @@ jobs:
         cp -RT Resources build/Resources
         cp -T .SunEngineRoot build/.SunEngineRoot
         cd ..
-        find . -not -name 'build' -print0 | xargs -0 rm -f
+        find . -not -name 'build' -print0 | xargs -0 rm -r
         cp -RT build/* ./
         rm -rf build 
         
